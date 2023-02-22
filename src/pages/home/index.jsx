@@ -10,7 +10,10 @@ const HomePage = () => {
       <div className="homeContainer">
         <NavbarComponent />
         <div className="widgets">
-          <WidgetComponent />
+          <WidgetComponent type="user" />
+          <WidgetComponent type="order" />
+          <WidgetComponent type="earning" />
+          <WidgetComponent type="balance" />
         </div>
       </div>
     </div>
