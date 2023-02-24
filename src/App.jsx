@@ -1,13 +1,16 @@
+import { useContext } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { ThemeContext } from "./context/ThemeContext";
 import HomePage from "./pages/home";
 import ListPage from "./pages/list";
 import LoginPage from "./pages/login";
 import NewPage from "./pages/new";
 import SinglePage from "./pages/single";
-
+import "./styles/theme.scss";
 function App() {
+  const { darkMode } = useContext(ThemeContext);
   return (
-    <div>
+    <div className={darkMode ? "app dark" : "app"}>
       <BrowserRouter>
         <Routes>
           <Route path="/">

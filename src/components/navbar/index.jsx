@@ -1,9 +1,18 @@
 import "./navbar.scss";
 import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
 import LanguageOutlinedIcon from "@mui/icons-material/LanguageOutlined";
-import DarkModeOutlinedIcon from "@mui/icons-material/DarkModeOutlined";
+import DarkModeTwoToneIcon from "@mui/icons-material/DarkModeTwoTone";
+import LightModeTwoToneIcon from "@mui/icons-material/LightModeTwoTone";
+import { useContext, useState } from "react";
+import { ThemeContext } from "../../context/ThemeContext";
 
 function NavbarComponent() {
+  const { dispatch } = useContext(ThemeContext);
+  const [isActive, setIsActive] = useState(false);
+  const handleThemeChange = () => {
+    dispatch({ type: "TOGGLE" });
+    setIsActive((prev) => !prev);
+  };
   return (
     <div className="navbar">
       <div className="wrapper">
@@ -18,7 +27,9 @@ function NavbarComponent() {
           </div>
 
           <div className="item">
-            <DarkModeOutlinedIcon className="icon" />
+            <div className="icon" onClick={handleThemeChange}>
+              {isActive ? <LightModeTwoToneIcon /> : <DarkModeTwoToneIcon />}
+            </div>
           </div>
 
           <div className="item">
