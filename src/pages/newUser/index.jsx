@@ -1,7 +1,7 @@
 import React from "react";
 
-function NewPage() {
+function NewUserPage() {
   return <div>NewPage</div>;
 }
 
-export default NewPage;
+export default NewUserPage;
