@@ -10,7 +10,6 @@ import { userRows } from "../../assets/datatableSource";
 function DatatableComponent({ columns }) {
   const location = useLocation();
   const path = location.pathname.split("/")[1];
-  console.log(path);
 
   // const [data, setData] = useState(userRows);
 

@@ -24,8 +24,9 @@ function LoginPage() {
     dispatch({ type: "LOGIN_START" });
     try {
       const res = await axios.post(`${api}/api/v1/auth/login`, credentials);
+      console.log(res.data.isAdmin);
       if (res.data.isAdmin) {
-        dispatch({ type: "LOGIN_SUCCESS", payload: res.data.details });
+        dispatch({ type: "LOGIN_SUCCESS", payload: res.data });
         navigate("/");
       } else {
         dispatch({
