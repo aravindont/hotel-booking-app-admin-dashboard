@@ -1,16 +1,20 @@
 import axios from "axios";
-import React, { useContext, useState } from "react";
+import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../context/AuthContext";
 import "./login.scss";
 import { api } from "../../api";
+
 function LoginPage() {
   const [credentials, setCredentials] = useState({
     username: null,
     password: null,
   });
+
   const { loading, error, dispatch } = useContext(AuthContext);
+
   const navigate = useNavigate();
+
   const handleChange = (e) => {
     setCredentials((prev) => ({ ...prev, [e.target.id]: e.target.value }));
   };
@@ -22,6 +26,7 @@ function LoginPage() {
       const res = await axios.post(`${api}/api/v1/auth/login`, credentials);
       if (res.data.isAdmin) {
         dispatch({ type: "LOGIN_SUCCESS", payload: res.data.details });
+        navigate("/");
       } else {
         dispatch({
           type: "LOGIN_FAILURE",
@@ -35,6 +40,7 @@ function LoginPage() {
       });
     }
   };
+
   return (
     <div className="login">
       <div className="lContainer">

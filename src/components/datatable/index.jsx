@@ -5,13 +5,23 @@ import { api } from "../../api";
 import { useEffect, useState } from "react";
 import useFetch from "../../hooks/useFetch";
 import axios from "axios";
+import { userRows } from "../../assets/datatableSource";
 
 function DatatableComponent({ columns }) {
   const location = useLocation();
   const path = location.pathname.split("/")[1];
-  const [list, setList] = useState();
-  const { data, loading, error } = useFetch(`${api}/api/v1/${path}`);
+  console.log(path);
 
+  // const [data, setData] = useState(userRows);
+
+  // const handleDelete = (id) => {
+  //   setData(data.filter((item) => item.id !== id));
+  // };
+
+  const [list, setList] = useState(null);
+  const { data, loading, error, reFetch } = useFetch(
+    `${api}/api/v1/${path}/getAllUsers`
+  );
   useEffect(() => {
     setList(data);
   }, [data]);
@@ -49,14 +59,14 @@ function DatatableComponent({ columns }) {
   return (
     <div className="datatable">
       <div className="datatableTitle">
-        {path}{" "}
+        {path}
         <Link to={`/${path}/new`} className="link">
           Add New
         </Link>
       </div>
       <DataGrid
         className="datagrid"
-        rows={list}
+        rows={data}
         columns={columns.concat(actionColumn)}
         pageSize={9}
         rowsPerPageOptions={[9]}

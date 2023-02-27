@@ -3,13 +3,13 @@ import NavbarComponent from "../../components/navbar";
 import SidebarComponent from "../../components/sidebar";
 import "./list.scss";
 
-function ListPage() {
+function ListPage({ columns }) {
   return (
     <div className="list">
       <SidebarComponent />
       <div className="listContainer">
         <NavbarComponent />
-        <DatatableComponent />
+        <DatatableComponent columns={columns} />
       </div>
     </div>
   );
